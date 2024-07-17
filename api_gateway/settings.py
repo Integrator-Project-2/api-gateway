@@ -9,8 +9,16 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
+
+USER_SERVICE_BASE_API_URL = os.getenv('USER_SERVICE_BASE_API_URL')
+PATIENTS_MANAGMENT_SERVICE_BASE_API_URL = os.getenv('PATIENTS_MANAGMENT_SERVICE_BASE_API_URL')
+MEDICAL_PRESCRIPTIONS_SERVICE_BASE_API_URL = os.getenv('MEDICAL_PRESCRIPTIONS_SERVICE_BASE_API_URL')
+MEDICATION_SERVICE_BASE_API_URL = os.getenv('MEDICATION_SERVICE_BASE_API_URL')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
