@@ -25,6 +25,12 @@ class RegisterPatientView(BaseProxyView):
         url = f'{settings.USER_SERVICE_BASE_API_URL}/pacients/'
         return self.proxy('POST', url, request, *args, **kwargs)
     
+class SearchPatientByCPFView(BaseProxyView):
+    
+    def post(self, request, *args, **kwargs):
+        url = f'{settings.USER_SERVICE_BASE_API_URL}/pacients/search-by-cpf/'
+        return self.proxy('POST', url, request, *args, **kwargs)
+    
 class PatientsServiceProxy(BaseProxyView):
     def get(self, request, path, *args, **kwargs):
         url = f'{settings.USER_SERVICE_BASE_API_URL}/pacients/{path}'
@@ -33,4 +39,5 @@ class PatientsServiceProxy(BaseProxyView):
     def put(self, request, path, *args, **kwargs):
         url = f'{settings.USER_SERVICE_BASE_API_URL}/pacients/{path}'
         return self.proxy('PUT', url, request, *args, **kwargs)
+
     
