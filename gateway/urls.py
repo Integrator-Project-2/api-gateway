@@ -2,7 +2,7 @@ from django.urls import path, re_path
 
 from gateway.views.create_user_view import CreateUserView
 from gateway.views.medication_service_views import AmountReminderServiceProxy, MedicationReminderDueReminderServiceProxy, MedicationSearchServiceProxy, MedicationServiceProxy
-from gateway.views.patient_managment_views import AssociateDoctorToPatientView, CreateMedicalPrescriptionView
+from gateway.views.patient_managment_views import AssociateDoctorToPatientView, CreateMedicalPrescriptionView, DoctorPatientsListView
 from gateway.views.user_service_views import DoctorsServiceProxy, PatientsServiceProxy, RegisterDoctorView, RegisterPatientView, SearchPatientByCPFView
 
 
@@ -20,4 +20,5 @@ urlpatterns = [
     re_path(r'^medication-reminder/(?P<path>.*)$', MedicationReminderDueReminderServiceProxy.as_view(), name='medication-reminder-service'),
     re_path(r'^amount-reminder/(?P<path>.*)$', AmountReminderServiceProxy.as_view(), name='amount-reminder-service'),
     re_path(r'^pacients-service/search-by-cpf/(?P<path>.*)?$', SearchPatientByCPFView.as_view(), name='search-patient-by-cpf'),
+    path('doctors/<int:doctor_id>/patients/', DoctorPatientsListView.as_view(), name='doctor-patients-list'),
 ]
