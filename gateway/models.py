@@ -29,6 +29,7 @@ class User(AbstractBaseUser):
     email = models.EmailField(max_length=255, unique=True)
     password = models.CharField(max_length=128)
     linked_user = models.IntegerField() # id do usuário no user_service
+    birth_date = models.DateField(null=True, blank=True)
     
     objects = CustomUserManager()
 
