@@ -16,3 +16,9 @@ class CreateMedicalPrescriptionView(BaseProxyView):
     def post(self, request, *args, **kwargs):
         url = f'{settings.PATIENTS_MANAGMENT_SERVICE_BASE_API_URL}/medical-prescriptions/'
         return self.proxy('POST', url, request, *args, **kwargs)
+    
+class PatientPrescriptionsAPIView(BaseProxyView):
+    def get(self, request, patient_id, *args, **kwargs):
+        url = f'{settings.PATIENTS_MANAGMENT_SERVICE_BASE_API_URL}/prescriptions/patient/{patient_id}/'
+        return self.proxy('GET', url, request, *args, **kwargs)
+
