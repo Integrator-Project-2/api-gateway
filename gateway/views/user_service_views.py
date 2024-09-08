@@ -36,8 +36,8 @@ class PatientsServiceProxy(BaseProxyView):
         url = f'{settings.USER_SERVICE_BASE_API_URL}/pacients/{path}'
         return self.proxy('GET', url, request, *args, **kwargs)
 
-    def put(self, request, path, *args, **kwargs):
+    def patch(self, request, path, *args, **kwargs):
         url = f'{settings.USER_SERVICE_BASE_API_URL}/pacients/{path}'
-        return self.proxy('PUT', url, request, *args, **kwargs)
+        return self.proxy('PATCH', url, request, *args, **kwargs)
 
     
