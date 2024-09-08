@@ -3,7 +3,13 @@ from .base_proxy_view import BaseProxyView
     
 class MedicationServiceProxy(BaseProxyView):
     def get(self, request, path, *args, **kwargs):
-        url = f'{settings.MEDICATION_SERVICE_BASE_API_URL}/medications/{path}'
+        medication_name = request.GET.get('name', '')
+
+        if medication_name:
+            url = f'{settings.MEDICATION_SERVICE_BASE_API_URL}/medications/{path}?name={medication_name}'
+        else:
+            url = f'{settings.MEDICATION_SERVICE_BASE_API_URL}/medications/{path}'
+    
         return self.proxy('GET', url, request, *args, **kwargs)
 
     def post(self, request, path, *args, **kwargs):
@@ -21,7 +27,7 @@ class MedicationServiceProxy(BaseProxyView):
 class MedicationSearchServiceProxy(BaseProxyView):
     def get(self, request, path, *args, **kwargs):
         medication_name = request.GET.get('name', '')
-        url = f'{settings.MEDICATION_SERVICE_BASE_API_URL}/medications/search/?name={medication_name}/{path}'
+        url = f'{settings.MEDICATION_SERVICE_BASE_API_URL}/medications/{path}'
         return self.proxy('GET', url, request, *args, **kwargs)
     
 class MedicationReminderDueReminderServiceProxy(BaseProxyView):
