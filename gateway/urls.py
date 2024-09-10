@@ -1,5 +1,6 @@
 from django.urls import path, re_path
 
+from gateway.views.auth_user_view import LinkedUserDoctorAPIView
 from gateway.views.create_user_view import CreateUserView
 from gateway.views.medication_service_views import AmountReminderServiceProxy, MedicationReminderDueReminderServiceProxy, MedicationSearchServiceProxy, MedicationServiceProxy
 from gateway.views.patient_managment_views import AssociateDoctorToPatientView, CreateMedicalPrescriptionView, DoctorPatientsListView, PatientPrescriptionsAPIView
@@ -22,4 +23,5 @@ urlpatterns = [
     re_path(r'^pacients-service/search-by-cpf/(?P<path>.*)?$', SearchPatientByCPFView.as_view(), name='search-patient-by-cpf'),
     path('doctors/<int:doctor_id>/patients/', DoctorPatientsListView.as_view(), name='doctor-patients-list'),
     re_path(r'^prescriptions/patient/(?P<patient_id>\d+)/$', PatientPrescriptionsAPIView.as_view(), name='doctor-patients-list'),
+    path('users/linked_doctor/<int:user_id>/', LinkedUserDoctorAPIView.as_view(), name='linked_user_doctor'),
 ]
