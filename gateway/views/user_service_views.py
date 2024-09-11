@@ -39,5 +39,8 @@ class PatientsServiceProxy(BaseProxyView):
     def patch(self, request, path, *args, **kwargs):
         url = f'{settings.USER_SERVICE_BASE_API_URL}/pacients/{path}'
         return self.proxy('PATCH', url, request, *args, **kwargs)
-
     
+class ExpoPushTokenServiceProxy(BaseProxyView):
+    def post(self, request, path , *args, **kwargs):
+        url = f'{settings.USER_SERVICE_BASE_API_URL}/pacients/{path}/update_token/'
+        return self.proxy('POST', url, request, *args, **kwargs)
